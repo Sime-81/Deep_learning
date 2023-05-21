@@ -58,6 +58,14 @@ def main():
                         print(f"Vous venez de dire: \n{text}")
 
                         #génération de la réponce
+                        if text == 'est-ce que tu me comprends':
+                            speak_text("Oui mais je ne suis pas encore relier à une IA")
+
+                        elif text == 'au revoir Jake' :
+                            speak_text("Au revoir au plaisir de vous entendre à nouveau monsieur")
+                            print("Merci d'avoire utiliser le programme")
+                            break
+
                         response = generate_response(text)
                         print(f"Réponse de Génius : \n{response}")
                         # Initiation Vocale de la réponse
