@@ -82,7 +82,6 @@ async def main():
         for message in response["item"]["messages"]:
             if message["author"] == "bot":
                 bot_response = message["text"]
-                break
 
         if bot_response:
             # Supprime les balises dans la réponse
