@@ -45,8 +45,9 @@ async def generate_IA(prompt):
     if bot_response:
        # Supprime les balises dans la réponse
         bot_response = re.sub(r'\[.*?\]', '', bot_response)
+        bot_response = re.sub(r'Bing', 'Jake', bot_response)
         print(f"Jake : {bot_response}")
-        speak_text(response)
+        speak_text(bot_response)
 
     await bot.close()
 
