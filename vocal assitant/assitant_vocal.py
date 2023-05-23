@@ -1,7 +1,10 @@
+import asyncio
+import re
 import openai
 import pyttsx3
 import speech_recognition as sr 
 import time
+from EdgeGPT import Chatbot, ConversationStyle
 
 #mise en place des clef OpenAI API
 openai.api_key = "..."
@@ -28,6 +31,24 @@ def generate_response(prompt):
         temperature=0.5
     )
     return response["choices"][0]["text"]
+
+async def generate_IA(prompt):
+    bot = await Chatbot.create()
+    response = await bot.ask(prompt=prompt, conversation_style=ConversationStyle.creative)
+
+    # Sélection de la réponse du bot
+    bot_response = None
+    for message in response["item"]["messages"]:
+        if message["author"] == "bot":
+            bot_response = message["text"]
+
+    if bot_response:
+       # Supprime les balises dans la réponse
+        bot_response = re.sub(r'\[.*?\]', '', bot_response)
+        print(f"Jake : {bot_response}")
+        speak_text(response)
+
+    await bot.close()
 
 def speak_text(text):
     engine.say(text)
@@ -66,10 +87,8 @@ def main():
                             print("Merci d'avoire utiliser le programme")
                             break
 
-                        response = generate_response(text)
-                        print(f"Réponse de Génius : \n{response}")
-                        # Initiation Vocale de la réponse
-                        speak_text(response)
+                        asyncio.run(generate_IA(text))
+                        
             except Exception as e:
                 print(f"An error occured: {e}")
 
