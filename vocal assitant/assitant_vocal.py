@@ -33,14 +33,23 @@ def generate_response(prompt):
     return response["choices"][0]["text"]
 
 async def generate_IA(prompt):
+    speak_text('Jake réfléchit la réponse arrive bientôt')
+    print("Question reçu ...")
+    speak_text("Question reçu")
     bot = await Chatbot.create()
     response = await bot.ask(prompt=prompt, conversation_style=ConversationStyle.creative)
+
+    print("Question Traité ...")
+    speak_text("Question Traité")
 
     # Sélection de la réponse du bot
     bot_response = None
     for message in response["item"]["messages"]:
         if message["author"] == "bot":
             bot_response = message["text"]
+
+    print("Génération de la réponse ...")
+    speak_text("Génération de la réponse")
 
     if bot_response:
        # Supprime les balises dans la réponse
