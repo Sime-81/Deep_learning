@@ -29,6 +29,8 @@ async def generate_IA(prompt):
     if sauv == 1 :
         titre = input("Donné un nom au Sujet : ")
 
+        titre = re.sub(r' ', '_', titre)
+
         sauvegarde(titre, bot_response)
     else :
         print("Merci d'avoir utilisé Jake")
@@ -42,7 +44,7 @@ def supprimer_emoji(chaine):
 def sauvegarde(Titre, Jake):
     Jake = supprimer_emoji(Jake)
 
-    with open(f"./Sauvegarde/{Titre}.txt", "w") as f :
+    with open(f"./Sauvegarde/{Titre}.txt", "w", encoding='UTF-8') as f :
         f.write(Jake)
 
     print(f"Votre fichier à été sauvegardés: {Titre}.txt")
