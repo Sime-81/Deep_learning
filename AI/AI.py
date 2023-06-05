@@ -24,7 +24,7 @@ async def generate_IA(prompt):
 
     await bot.close()
 
-    sauv = int(input("Voulez-vous sauvegardé la réponse :\n1) Oui\n2) Non\nVotre réponse : "))
+    sauv = int(input("\nVoulez-vous sauvegardé la réponse :\n1) Oui\n2) Non\nVotre réponse : "))
 
     if sauv == 1 :
         titre = input("Donné un nom au Sujet : ")
