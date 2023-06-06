@@ -37,6 +37,7 @@ async def generate_IA(prompt):
     print("Question reçu ...")
     speak_text("Question reçu")
     bot = await Chatbot.create()
+    speak_text("En cour de traitement ...")
     response = await bot.ask(prompt=prompt, conversation_style=ConversationStyle.creative)
 
     print("Question Traité ...")
