@@ -2,13 +2,13 @@ import cv2
 import mediapipe as mp
 import time
 
-cap = cv2.VideoCapture(0)  # ("Videos/test.mp4")
+cap = cv2.VideoCapture(2)  # ("Videos/test.mp4")
 pTime = 0
 
 mpDraw = mp.solutions.drawing_utils
 mpFaceMesh = mp.solutions.face_mesh
 faceMesh = mpFaceMesh.FaceMesh(max_num_faces=2)
-drawSpec = mpDraw.DrawingSpec(thickness=2, circle_radius=2)
+drawSpec = mpDraw.DrawingSpec(thickness=1, circle_radius=1)
 
 frameWidth = 1280
 frameHeight = 720
@@ -23,7 +23,7 @@ while True:
     if results.multi_face_landmarks:
         for faceLms in results.multi_face_landmarks:  # pour chaque maillage (de chaque visage trouvé)
             # Dessine le maillage sur le visage
-            mpDraw.draw_landmarks(img, faceLms, mpFaceMesh.FACE_CONNECTIONS, drawSpec, drawSpec)
+            mpDraw.draw_landmarks(img, faceLms, mpFaceMesh.FACEMESH_TESSELATION, drawSpec, drawSpec)  # FACEMESH_CONTOURS
 
     cTime = time.time()  # (mili)seconde actuelle (epoch linux)
     fps = 1 / (cTime - pTime)  # fps = 1 / (seconde actuelle - seconde précédente)
