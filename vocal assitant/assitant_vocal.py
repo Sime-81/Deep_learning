@@ -81,8 +81,6 @@ def main():
                         recognizer = sr.Recognizer()
                         source.pausetreshold = 1
                         audio = recognizer.listen(source, phrase_time_limit=None, timeout=None)
-                        with open(filename, "wb") as f :
-                            f.write(audio.get_wav_data())
                     
                     # Retranscription de la requête
                     text = tatt(filename)

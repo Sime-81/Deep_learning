@@ -2,12 +2,12 @@ import cv2
 import mediapipe as mp
 import time
 
-cap = cv2.VideoCapture(2)  # ("Videos/test.mp4")
+cap = cv2.VideoCapture(0)  # ("Videos/test.mp4")
 pTime = 0
 
 mpDraw = mp.solutions.drawing_utils
 mpFaceMesh = mp.solutions.face_mesh
-faceMesh = mpFaceMesh.FaceMesh(max_num_faces=2)
+faceMesh = mpFaceMesh.FaceMesh(max_num_faces=4)
 drawSpec = mpDraw.DrawingSpec(thickness=1, circle_radius=1)
 
 frameWidth = 1280

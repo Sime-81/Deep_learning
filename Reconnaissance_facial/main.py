@@ -8,10 +8,10 @@ from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
 ################################
-wCam, hCam = 640, 480
+wCam, hCam = 1280, 720
 ################################
 
-cap = cv2.VideoCapture(2)  # ("Videos/test.mp4")
+cap = cv2.VideoCapture(0)  # ("Videos/test.mp4")
 cap.set(3, wCam)
 cap.set(4, hCam)
 pTime = 0
@@ -36,7 +36,7 @@ while True:
         # print(lmList[4], lmList[8])
 
         x1, y1 = lmList[4][1], lmList[4][2]  # doigt 1 (pouce)
-        x2, y2 = lmList[20][1], lmList[20][2]  # doigt 2 (index)
+        x2, y2 = lmList[8][1], lmList[8][2]  # doigt 2 (index)
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
 
         # Dessine les cercles et la ligne entre les doigts (avec le cercle de moitié)
@@ -55,7 +55,7 @@ while True:
         volBar = np.interp(length, [50, 300], [400, 150])  # convertir l'intervalle 50 - 300 en barre de volume
         volPer = np.interp(length, [50, 300], [0, 100])  # convertit l'intervalle 50 - 300 en pourcentage
         print(int(length), vol)
-        volume.SetMasterVolumeLevel(vol, None)
+        volume.SetMasterVolumeLevel(vol , None)
 
         if length < 50:  # change la couleur du cercle central si doigts collés
             cv2.circle(img, (cx, cy), 15, (0, 255, 0), cv2.FILLED)  # R, V, B (0, 255, 0)
